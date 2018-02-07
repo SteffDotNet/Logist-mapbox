@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="menu.item_padding">15dp</dimen>
+    <dimen name="menu.item_margin">1dp</dimen>
+
+    <dimen name="ma.text_size.small">12dp</dimen>
+    <dimen name="ma.text_size.medium">14dp</dimen>
+    <dimen name="ma.textView_marginLeft">10dp</dimen>
+    <dimen name="ma.textView_marginBottom">2dp</dimen>
+    <dimen name="ma.textView_marginTop">5dp</dimen>
+    <dimen name="ma.editText_margin">10dp</dimen>
+
+
+
+</resources>

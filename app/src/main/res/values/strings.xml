@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Logist</string>
     <string name="map_key">pk.eyJ1IjoiZWdvcjk0IiwiYSI6ImNqZDc4cDFjcjE3b3AycXIybnRzMmx3NGoifQ.83ldmjO57BRCSKnnQx2qag</string>
+
+    <!-- Menu items -->
+    <string name="menu.marker_add">Добавить</string>
+    <string name="menu.marker_remove">Удалить</string>
+    <string name="menu.marker_edit">Изменить</string>
+    <string name="cancel">Отмена</string>
+
+    <string name="dialog.marker.addition">Добавление маркера</string>
+    <string name="dialog.marker.edition">Изменение маркера</string>
+    <string name="dialog.marker.removal">Удаление маркера</string>
+
+    <string name="ma.title">Название</string>
+    <string name="ma.description">Описание</string>
+    <string name="ma.longitude">Долгота</string>
+    <string name="ma.latitude">Широта</string>
+
+
 </resources>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ma.textView"
+        android:textSize="@dimen/ma.text_size.small"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/ma.textView_marginTop"
+        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
+        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
+        android:text="@string/ma.latitude"/>
+
+    <EditText
+        android:id="@+id/latEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ma.text_size.medium"
+        android:layout_marginRight="@dimen/ma.editText_margin"
+        android:layout_marginLeft="@dimen/ma.editText_margin"
+        android:theme="@style/EditText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ma.textView"
+        android:textSize="@dimen/ma.text_size.small"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/ma.textView_marginTop"
+        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
+        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
+        android:text="@string/ma.longitude"/>
+
+    <EditText
+        android:id="@+id/lngEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ma.text_size.medium"
+        android:layout_marginRight="@dimen/ma.editText_margin"
+        android:layout_marginLeft="@dimen/ma.editText_margin"
+        android:theme="@style/EditText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ma.textView"
+        android:textSize="@dimen/ma.text_size.small"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/ma.textView_marginTop"
+        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
+        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
+        android:text="@string/ma.title"/>
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ma.text_size.medium"
+        android:layout_marginRight="@dimen/ma.editText_margin"
+        android:layout_marginLeft="@dimen/ma.editText_margin"
+        android:theme="@style/EditText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ma.textView"
+        android:textSize="@dimen/ma.text_size.small"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/ma.textView_marginTop"
+        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
+        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
+        android:text="@string/ma.description"/>
+
+    <EditText
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ma.text_size.medium"
+        android:layout_marginRight="@dimen/ma.editText_margin"
+        android:layout_marginLeft="@dimen/ma.editText_margin"
+        android:theme="@style/EditText"/>
+
+</LinearLayout>

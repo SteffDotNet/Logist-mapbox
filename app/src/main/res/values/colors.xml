@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="menu">#1f1f20</color>
+    <color name="menu.item">#2e2e30</color>
+    <color name="menu.text_item">#d9d9e1</color>
+
+    <color name="ma.textView">#1c6abc</color>
+    <color name="dialog.editText_normal">#2a6fb9</color>
+    <color name="dialog.editText_focus">#07509c</color>
+
 </resources>
