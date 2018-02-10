@@ -82,6 +82,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         );
 
         updateCamera(myLocation.getPosition());
+
+        presenter.updateMarkers(mapboxMap);
     }
 
     @Override

@@ -21,8 +21,6 @@ public class MarkerService implements MarkerDaoService{
     private List<Marker> markers;
     private CountDownTimer timer;
 
-
-
     public MarkerService() {
         markers = new ArrayList<>();
     }
@@ -33,6 +31,13 @@ public class MarkerService implements MarkerDaoService{
 
     public void setCurrentMarker(Marker currentMarker) {
         this.currentMarker = currentMarker;
+    }
+
+    public void setMarkers(List<Marker> markers) {
+        if(this.markers != null){
+            this.markers.clear();
+        }
+        this.markers = markers;
     }
 
     public static MarkerService getInstance(){
@@ -112,5 +117,6 @@ public class MarkerService implements MarkerDaoService{
             timer = null;
         }
     }
+
 
 }
