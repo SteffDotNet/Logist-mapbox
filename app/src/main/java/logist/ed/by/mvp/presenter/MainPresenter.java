@@ -1,9 +1,14 @@
 package logist.ed.by.mvp.presenter;
 
+import android.util.Log;
+
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
 
+import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.view.MainIView;
 
 
@@ -12,9 +17,27 @@ import logist.ed.by.mvp.view.MainIView;
  */
 
 @InjectViewState
-public class MainPresenter extends MvpPresenter<MainIView> implements MainIPresenter{
-    @Override
-    public void saveMarker(String title, String address, LatLng point) {
+public class MainPresenter extends MvpPresenter<MainIView>{
 
+    public void createMarker(MapboxMap mapboxMap, LatLng position){
+        MarkerService.getInstance().createCurrentMarker(mapboxMap, position, this::hideMarkerMenu);
     }
+
+    public  void removeCurrentMarker(MapboxMap mapboxMap){
+        MarkerService.getInstance().removeCurrentMarker(mapboxMap);
+    }
+
+    public void hideMarkerMenu(){
+        getViewState().hideMenu(true);
+    }
+
+    public Marker getCurrentMarker(){
+        return MarkerService.getInstance().getCurrentMarker();
+    }
+
+
+    public void stopMarkerTime(){
+        MarkerService.getInstance().stopTimer();
+    }
+
 }

@@ -1,7 +1,8 @@
 package logist.ed.by.mvp.view;
 
+import android.content.Context;
+
 import com.arellomobile.mvp.MvpView;
-import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 /**
@@ -10,11 +11,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 
 public interface MainIView extends MvpView {
     void updateCamera(LatLng latLng);
-
     void showMenu();
-    void hideMenu();
+    void hideMenu(boolean isAnim);
     void startMarkerActivity();
-    void showMarker(LatLng position);
-    void removeMarker();
 
 }
