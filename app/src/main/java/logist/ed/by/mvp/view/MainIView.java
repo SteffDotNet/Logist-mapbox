@@ -11,8 +11,8 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 
 public interface MainIView extends MvpView {
     void updateCamera(LatLng latLng);
-    void showMenu();
-    void hideMenu(boolean isAnim);
+    void showMenu(int type);
+    void hideMenu();
     void startMarkerActivity();
 
 }

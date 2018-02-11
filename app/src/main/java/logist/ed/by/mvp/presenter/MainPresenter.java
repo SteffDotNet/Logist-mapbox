@@ -10,6 +10,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap;
 import java.util.ArrayList;
 import java.util.List;
 
+import logist.ed.by.mvp.service.GeocodingService;
 import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.view.MainIView;
 
@@ -34,7 +35,7 @@ public class MainPresenter extends MvpPresenter<MainIView>{
     }
 
     public void hideMarkerMenu(){
-        getViewState().hideMenu(true);
+        getViewState().hideMenu();
     }
 
     public void stopMarkerTime(){
@@ -58,6 +59,10 @@ public class MainPresenter extends MvpPresenter<MainIView>{
 
     public void setCurrentMarker(Marker currentMarker) {
         MarkerService.getInstance().setCurrentMarker(currentMarker);
+    }
+
+    public void updateRoute(MapboxMap mapboxMap, List<LatLng> points){
+        GeocodingService.getInstance().findRoute(mapboxMap, null, null, points);
     }
 
 }

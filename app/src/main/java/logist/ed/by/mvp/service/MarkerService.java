@@ -52,6 +52,15 @@ public class MarkerService{
         return instance;
     }
 
+    public List<LatLng> getMarkersPositions(){
+        List<LatLng> positions = new ArrayList<>();
+        for(Marker m : markers){
+            positions.add(m.getPosition());
+        }
+
+        return positions;
+    }
+
     public Marker createCurrentMarker(MapboxMap mapboxMap, LatLng position, MenuListener listener) {
         if(timer != null){
             timer.cancel();

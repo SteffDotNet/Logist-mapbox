@@ -103,17 +103,23 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
         latEditText.setText(String.valueOf(MarkerService.getInstance().getCurrentMarker().getPosition().getLatitude()));
         lngEditText.setText(String.valueOf(MarkerService.getInstance().getCurrentMarker().getPosition().getLongitude()));
 
-        String coordinates = MarkerService.getInstance().getCurrentMarker().getPosition().getLatitude() + "," + MarkerService.getInstance().getCurrentMarker().getPosition().getLongitude();
+        String coordinates = MarkerService.getInstance().getCurrentMarker().getPosition().getLongitude() + "," + MarkerService.getInstance().getCurrentMarker().getPosition().getLatitude();
         String type = "address";
 
-        MapBoxApiService.getRetrofit().searchPlace(coordinates, type, ACCESS_TOKEN)
+        presenter.searchPlace(MarkerService.getInstance().getCurrentMarker().getPosition(), descriptionEditText);
+
+        /*MapBoxApiService.getRetrofit().searchPlace(coordinates, type, ACCESS_TOKEN)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(result -> {
-                    titleEditText.setText(result.getFeatures().get(0).getAddress());
+                    if(result.getFeatures().size() > 0){
+                        int index = result.getFeatures().get(0).getPlaceName().indexOf(",");
+                        titleEditText.setText(result.getFeatures().get(0).getPlaceName().substring(0, index));
+                    }
+
                 }, error ->{
                     titleEditText.setText(error.getMessage());
-                });
+                });*/
     }
 
 

@@ -1,8 +1,11 @@
 package logist.ed.by.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +16,24 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import logist.ed.by.R;
 import logist.ed.by.dialog.DialogRemove;
 import logist.ed.by.mvp.presenter.MainPresenter;
+import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.view.MainIView;
+import logist.ed.by.utils.Settings;
 
 
 public class MainActivity extends MvpAppCompatActivity implements MainIView, View.OnClickListener, MapboxMap.OnMapClickListener, MapboxMap.OnMarkerClickListener, OnMapReadyCallback{
@@ -33,23 +42,18 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
     @BindView(R.id.mapView)
     MapView mapView;
 
-    @BindView(R.id.markerMenu)
-    ViewGroup markerMenu;
+    @BindView(R.id.fabAdd)
+    FloatingActionButton buttonAdd;
 
-    @BindView(R.id.markerAdd)
-    View itemAdd;
-
-    @BindView(R.id.markerEdit)
-    View itemEdit;
-
-    @BindView(R.id.markerRemove)
-    View itemRemove;
+    @BindView(R.id.fabRemove)
+    FloatingActionButton buttonRemove;
 
     @InjectPresenter
     MainPresenter presenter;
 
     private MapboxMap mapboxMap;
     private Marker myLocation;
+    private Marker selectMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,9 +65,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        itemAdd.setOnClickListener(this);
-        itemEdit.setOnClickListener(this);
-        itemRemove.setOnClickListener(this);
+        buttonAdd.setOnClickListener(this);
+        buttonRemove.setOnClickListener(this);
 
     }
 
@@ -80,6 +83,32 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
                 .title("I")
         );
 
+        List<LatLng> points = new ArrayList<>();
+        points.add(new LatLng(4.814947,1.153674));
+        points.add(new LatLng(4.814721,1.153643));
+        points.add(new LatLng(4.814488,1.153492));
+        points.add(new LatLng(4.813994,1.153407));
+        points.add(new LatLng(4.813991,1.153472));
+        points.add(new LatLng(4.814316,1.153483));
+        points.add(new LatLng(4.814513,1.153537));
+        points.add(new LatLng(4.814616,1.153611));
+        points.add(new LatLng(4.814507,1.15414));
+        points.add(new LatLng(4.814627,1.154269));
+        points.add(new LatLng(4.814679,1.1544));
+        points.add(new LatLng(4.814683,1.154517));
+        points.add(new LatLng(4.814595,1.15496));
+        points.add(new LatLng(4.814634,1.154985));
+        points.add(new LatLng(4.81477,1.155214));
+        points.add(new LatLng(4.814857,1.155303));
+        points.add(new LatLng(4.815176,1.153717));
+        points.add(new LatLng(4.816518,1.153787));
+        points.add(new LatLng(4.814947,1.153674));
+
+        mapboxMap.addPolyline(new PolylineOptions()
+                .addAll(points)
+                .color(Color.parseColor("#3bb2d0"))
+                .width(2));
+
         updateCamera(myLocation.getPosition());
 
         presenter.updateMarkers(mapboxMap);
@@ -87,26 +116,37 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
 
     @Override
     public void onMapClick(@NonNull LatLng point) {
-        if(!isMenuOpened()){
-            showMenu();
-        }
-
+        hideMenu();
+        showMenu(Settings.MARKER_ADD);
+        selectMarker = null;
         presenter.createMarker(mapboxMap, point);
     }
 
     @Override
     public boolean onMarkerClick(@NonNull Marker marker) {
-        DialogRemove.show(this, () -> presenter.removeMarker(marker));
+        if(myLocation.equals(marker)){
+            return false;
+        }
+        presenter.removeCurrentMarker();
+        selectMarker = marker;
+
+        hideMenu();
+        showMenu(Settings.MARKER_REMOVE);
+
         return false;
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.markerAdd:
-                hideMenu(false);
+            case R.id.fabAdd:
+                hideMenu();
                 startMarkerActivity();
                 break;
+
+            case R.id.fabRemove:
+                hideMenu();
+                DialogRemove.show(this, () -> presenter.removeMarker(selectMarker));
         }
     }
 
@@ -171,40 +211,34 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
     }
 
     @Override
-    public void showMenu() {
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.menu_open);
-        markerMenu.setVisibility(View.VISIBLE);
-        markerMenu.startAnimation(anim);
+    public void showMenu(int type) {
+        switch (type){
+            case Settings.MARKER_ADD:
+                buttonAdd.setVisibility(View.VISIBLE);
+                break;
+
+            case Settings.MARKER_REMOVE:
+                buttonRemove.setVisibility(View.VISIBLE);
+                CountDownTimer timer = new CountDownTimer(5000, 5000) {
+                    @Override
+                    public void onTick(long l) {
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        hideMenu();
+                    }
+                }.start();
+                break;
+        }
+
     }
 
     @Override
-    public void hideMenu(boolean isAnim) {
-
-        if(!isAnim) {
-            markerMenu.setVisibility(View.GONE);
-            return;
-        }
-
-        Animation anim = AnimationUtils.loadAnimation(this, R.anim.menu_close);
-        anim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                markerMenu.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-
-            }
-        });
-
-        markerMenu.startAnimation(anim);
-
+    public void hideMenu() {
+        buttonAdd.setVisibility(View.GONE);
+        buttonRemove.setVisibility(View.GONE);
     }
 
     @Override
@@ -215,7 +249,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
     }
 
     public boolean isMenuOpened() {
-        return markerMenu.getVisibility() == View.VISIBLE;
+        return buttonAdd.getVisibility() == View.VISIBLE || buttonRemove.getVisibility() == View.VISIBLE;
     }
 
     @Override
@@ -225,7 +259,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         switch (requestCode){
             case REQUEST_MARKER:
                 if(resultCode == RESULT_OK){
-
+                    presenter.updateRoute(mapboxMap, MarkerService.getInstance().getMarkersPositions());
                 }else if(resultCode == RESULT_CANCELED){
                     presenter.removeCurrentMarker();
                 }

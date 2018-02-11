@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#007ac1</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="fab">#054f70</color>
+
     <color name="menu">#054f70</color>
     <color name="menu.item">#03a9f4</color>
     <color name="menu.text_item">#d9d9e1</color>
