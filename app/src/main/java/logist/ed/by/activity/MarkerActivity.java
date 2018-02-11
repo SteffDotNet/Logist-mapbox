@@ -14,8 +14,11 @@ import com.mapbox.mapboxsdk.geometry.LatLng;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import logist.ed.by.R;
 import logist.ed.by.mvp.presenter.MarkerPresenter;
+import logist.ed.by.mvp.service.MapBoxApiService;
 import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.view.MarkerIView;
 
@@ -38,6 +41,8 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
 
     @InjectPresenter
     MarkerPresenter presenter;
+
+    private final static String ACCESS_TOKEN = "pk.eyJ1IjoiZWdvcjk0IiwiYSI6ImNqZDc4cDFjcjE3b3AycXIybnRzMmx3NGoifQ.83ldmjO57BRCSKnnQx2qag";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +67,8 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Marker marker = MarkerService.getInstance().getCurrentMarker();
+
         switch (item.getItemId()){
             case R.id.menuDone:
                /* Intent intent = new Intent();
@@ -70,7 +77,7 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
                 intent.putExtra("title", titleEditText.getText().toString());
                 intent.putExtra("description", descriptionEditText.getText().toString());*/
 
-                Marker marker = MarkerService.getInstance().getCurrentMarker();
+
                 LatLng latLng = new LatLng(Double.parseDouble(latEditText.getText().toString()), Double.parseDouble(lngEditText.getText().toString()));
 
                 marker.setPosition(latLng);
@@ -84,6 +91,7 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
                 break;
 
             case android.R.id.home:
+                marker.remove();
                 setResult(RESULT_CANCELED);
                 finish();
                 break;
@@ -94,6 +102,19 @@ public class MarkerActivity extends MvpAppCompatActivity implements MarkerIView 
     private void setViews(){
         latEditText.setText(String.valueOf(MarkerService.getInstance().getCurrentMarker().getPosition().getLatitude()));
         lngEditText.setText(String.valueOf(MarkerService.getInstance().getCurrentMarker().getPosition().getLongitude()));
+
+        String coordinates = MarkerService.getInstance().getCurrentMarker().getPosition().getLatitude() + "," + MarkerService.getInstance().getCurrentMarker().getPosition().getLongitude();
+        String type = "address";
+
+        MapBoxApiService.getRetrofit().searchPlace(coordinates, type, ACCESS_TOKEN)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(result -> {
+                    titleEditText.setText(result.getFeatures().get(0).getAddress());
+                }, error ->{
+                    titleEditText.setText(error.getMessage());
+                });
     }
+
 
 }

@@ -9,11 +9,12 @@
 
     <string name="cancel">Отмена</string>
     <string name="ok">Ok</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 
-    <string name="dialog.marker.addition">Добавление маркера</string>
-    <string name="dialog.marker.edition">Изменение маркера</string>
-    <string name="dialog.marker.removal">Удаление маркера</string>
+    <string name="dialog.remove.title">Вы уверены?</string>
+    <string name="dialog.remove.content">Данная точка будет удалена из вашего маршрута</string>
 
     <string name="ma.route_point">Путевая точка</string>
     <string name="ma.title">Название</string>

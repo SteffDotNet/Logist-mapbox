@@ -22,11 +22,12 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import logist.ed.by.R;
+import logist.ed.by.dialog.DialogRemove;
 import logist.ed.by.mvp.presenter.MainPresenter;
 import logist.ed.by.mvp.view.MainIView;
 
 
-public class MainActivity extends MvpAppCompatActivity implements MainIView, View.OnClickListener, MapboxMap.OnMapClickListener, OnMapReadyCallback{
+public class MainActivity extends MvpAppCompatActivity implements MainIView, View.OnClickListener, MapboxMap.OnMapClickListener, MapboxMap.OnMarkerClickListener, OnMapReadyCallback{
     private static final int REQUEST_MARKER = 1;
 
     @BindView(R.id.mapView)
@@ -49,9 +50,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
 
     private MapboxMap mapboxMap;
     private Marker myLocation;
-    private Marker currentMarker;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,8 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
     public void onMapReady(MapboxMap mapboxMap) {
         this.mapboxMap = mapboxMap;
         mapboxMap.addOnMapClickListener(this);
-        Log.i("TAG", "ready");
+        mapboxMap.setOnMarkerClickListener(this);
+
 
         myLocation = mapboxMap.addMarker(new MarkerOptions()
                 .position(new LatLng(48.13863, 11.57603))
@@ -93,6 +92,12 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         }
 
         presenter.createMarker(mapboxMap, point);
+    }
+
+    @Override
+    public boolean onMarkerClick(@NonNull Marker marker) {
+        DialogRemove.show(this, () -> presenter.removeMarker(marker));
+        return false;
     }
 
     @Override
@@ -170,7 +175,6 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.menu_open);
         markerMenu.setVisibility(View.VISIBLE);
         markerMenu.startAnimation(anim);
-
     }
 
     @Override
@@ -223,10 +227,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
                 if(resultCode == RESULT_OK){
 
                 }else if(resultCode == RESULT_CANCELED){
-                    presenter.removeCurrentMarker(mapboxMap);
+                    presenter.removeCurrentMarker();
                 }
         }
     }
-
 
 }

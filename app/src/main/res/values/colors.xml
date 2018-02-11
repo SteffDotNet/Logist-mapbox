@@ -13,4 +13,8 @@
     <color name="ma.editText_normal">#03a9f4</color>
     <color name="ma.editText_focus">#007ac1</color>
 
+    <color name="dialog.remove.background">#ffffff</color>
+    <color name="dialog.remove.title">#007ac1</color>
+    <color name="dialog.remove.content">#000000</color>
+    <color name="dialog.remove.btn">#007ac1</color>
 </resources>

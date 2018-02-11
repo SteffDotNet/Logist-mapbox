@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/dialog.remove.background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialog.textView_marginHorizontal"
+        android:layout_marginVertical="@dimen/dialog.textView_marginVertical"
+        android:textColor="@color/dialog.remove.title"
+        android:textSize="@dimen/dialog.remove.text_size.medium"
+        android:textStyle="bold"
+        android:text="@string/dialog.remove.title"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dialog.textView_marginHorizontal"
+        android:textColor="@color/dialog.remove.content"
+        android:textSize="@dimen/dialog.remove.text_size.small"
+        android:text="@string/dialog.remove.content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dialog.layoutBottom_marginTop"
+        android:layout_marginBottom="@dimen/dialog.layoutBottom_marginBottom">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/noEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dialog.remove.text_size.medium"
+                android:textColor="@color/dialog.remove.btn"
+                android:text="@string/no"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/yesEditText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dialog.remove.text_size.medium"
+                android:textColor="@color/dialog.remove.btn"
+                android:text="@string/yes"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -14,7 +14,12 @@ import java.util.List;
  * Created by Egor on 08.02.2018.
  */
 
-public class MarkerService implements MarkerDaoService{
+public class MarkerService{
+
+    public interface MenuListener{
+        void hide();
+    }
+
     public static MarkerService instance;
 
     private Marker currentMarker;
@@ -47,7 +52,6 @@ public class MarkerService implements MarkerDaoService{
         return instance;
     }
 
-    @Override
     public Marker createCurrentMarker(MapboxMap mapboxMap, LatLng position, MenuListener listener) {
         if(timer != null){
             timer.cancel();
@@ -63,7 +67,7 @@ public class MarkerService implements MarkerDaoService{
             @Override
             public void onFinish() {
                 if(currentMarker != null){
-                    mapboxMap.removeMarker(currentMarker);
+                    currentMarker.remove();
                     currentMarker = null;
 
                     if(listener != null){
@@ -82,35 +86,32 @@ public class MarkerService implements MarkerDaoService{
         return currentMarker;
     }
 
-    @Override
-    public void removeCurrentMarker(MapboxMap mapboxMap) {
+
+    public void removeCurrentMarker() {
         if(timer != null){
             timer.cancel();
             timer = null;
         }
 
         if(currentMarker != null){
-            mapboxMap.removeMarker(currentMarker);
+            currentMarker.remove();
             currentMarker = null;
         }
     }
 
-    @Override
     public void addMarker(Marker marker) {
         markers.add(marker);
     }
 
-    @Override
     public void removeMarker(Marker marker) {
         markers.remove(marker);
+        marker.remove();
     }
 
-    @Override
     public List<Marker> getAllMarkers() {
         return markers;
     }
 
-    @Override
     public void stopTimer() {
         if(timer != null){
             timer.cancel();
