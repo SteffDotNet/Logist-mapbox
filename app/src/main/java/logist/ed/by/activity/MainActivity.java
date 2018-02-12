@@ -16,6 +16,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+import com.mapbox.mapboxsdk.annotations.Polyline;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
@@ -54,6 +55,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
     private MapboxMap mapboxMap;
     private Marker myLocation;
     private Marker selectMarker;
+    private Polyline routePolyline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,11 +261,16 @@ public class MainActivity extends MvpAppCompatActivity implements MainIView, Vie
         switch (requestCode){
             case REQUEST_MARKER:
                 if(resultCode == RESULT_OK){
-                    presenter.updateRoute(mapboxMap, MarkerService.getInstance().getMarkersPositions());
+                    updateRoute();
                 }else if(resultCode == RESULT_CANCELED){
                     presenter.removeCurrentMarker();
                 }
         }
+    }
+
+    @Override
+    public void updateRoute(){
+        presenter.updateRoute(mapboxMap, MarkerService.getInstance().getMarkersPositions());
     }
 
 }

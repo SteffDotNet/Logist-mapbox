@@ -12,6 +12,7 @@ import java.util.List;
 
 import logist.ed.by.mvp.service.GeocodingService;
 import logist.ed.by.mvp.service.MarkerService;
+import logist.ed.by.mvp.service.RouteService;
 import logist.ed.by.mvp.view.MainIView;
 
 
@@ -32,6 +33,7 @@ public class MainPresenter extends MvpPresenter<MainIView>{
 
     public void removeMarker(Marker marker) {
         MarkerService.getInstance().removeMarker(marker);
+        getViewState().updateRoute();
     }
 
     public void hideMarkerMenu(){
@@ -62,7 +64,7 @@ public class MainPresenter extends MvpPresenter<MainIView>{
     }
 
     public void updateRoute(MapboxMap mapboxMap, List<LatLng> points){
-        GeocodingService.getInstance().findRoute(mapboxMap, null, null, points);
+        RouteService.getInstance().findRoute(mapboxMap, null, null, points);
     }
 
 }

@@ -14,5 +14,6 @@ public interface MainIView extends MvpView {
     void showMenu(int type);
     void hideMenu();
     void startMarkerActivity();
+    void updateRoute();
 
 }
