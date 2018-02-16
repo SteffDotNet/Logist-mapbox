@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MarkerDialogContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,27 +10,24 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dialog.textView_marginHorizontal"
-        android:layout_marginVertical="@dimen/dialog.textView_marginVertical"
+        android:layout_marginBottom="@dimen/indent_normal"
         android:textColor="@color/dialog.remove.title"
-        android:textSize="@dimen/dialog.remove.text_size.medium"
+        android:textSize="@dimen/indent_medium"
         android:textStyle="bold"
         android:text="@string/dialog.remove.title"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dialog.textView_marginHorizontal"
         android:textColor="@color/dialog.remove.content"
-        android:textSize="@dimen/dialog.remove.text_size.small"
+        android:textSize="@dimen/indent_normal"
         android:text="@string/dialog.remove.content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/dialog.layoutBottom_marginTop"
-        android:layout_marginBottom="@dimen/dialog.layoutBottom_marginBottom">
+        android:layout_marginTop="@dimen/indent_normal">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,7 +39,7 @@
                 android:id="@+id/noEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog.remove.text_size.medium"
+                android:textSize="@dimen/indent_medium"
                 android:textColor="@color/dialog.remove.btn"
                 android:text="@string/no"/>
 
@@ -57,7 +55,7 @@
                 android:id="@+id/yesEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/dialog.remove.text_size.medium"
+                android:textSize="@dimen/indent_medium"
                 android:textColor="@color/dialog.remove.btn"
                 android:text="@string/yes"/>
 

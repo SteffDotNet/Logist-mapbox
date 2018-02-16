@@ -6,30 +6,33 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-
-import logist.ed.by.mvp.service.GeocodingService;
+import javax.inject.Inject;
+import logist.ed.by.LogistApp;
 import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.view.MarkerIView;
-
-/**
- * Created by Egor on 10.02.2018.
- */
 
 @InjectViewState
 public class MarkerPresenter extends MvpPresenter<MarkerIView> {
 
-    public  void removeCurrentMarker(MapboxMap mapboxMap){
-        MarkerService.getInstance().removeCurrentMarker();
+    @Inject MarkerService markerService;
+
+    public MarkerPresenter() {
+        LogistApp.getAppComponent().inject(this);
     }
 
     public void saveMarker(Marker marker){
-        MarkerService.getInstance().addMarker(marker);
+        markerService.addMarker(marker);
     }
 
+    public void setCurrentMarker(Marker marker){
+        markerService.setCurrentMarker(marker);
+    }
 
+    public Marker getCurrentMarker(){
+        return markerService.getCurrentMarker();
+    }
 
     public void searchPlace(LatLng position, EditText editText){
-        GeocodingService.getInstance().searchPlace(position, editText);
+        //GeocodingService.getInstance().searchPlace(position, editText);
     }
 }

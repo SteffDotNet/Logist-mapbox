@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#007ac1</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="activity.background">#ffffff</color>
+    <color name="textColor.white">#ffffff</color>
+
+    <color name="marker.coordinates">#000000</color>
+
     <color name="fab">#054f70</color>
 
     <color name="menu">#054f70</color>

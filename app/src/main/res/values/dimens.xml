@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="menu.item_padding">15dp</dimen>
-    <dimen name="menu.item_margin">1dp</dimen>
 
-    <dimen name="ma.text_size.small">12dp</dimen>
-    <dimen name="ma.text_size.medium">14dp</dimen>
-    <dimen name="ma.text_size.large">18dp</dimen>
-    <dimen name="ma.textView_marginLeft">10dp</dimen>
-    <dimen name="ma.textView_marginBottom">2dp</dimen>
-    <dimen name="ma.textView_marginTop">5dp</dimen>
-    <dimen name="ma.editText_margin">10dp</dimen>
+    <dimen name="menu.route_info.height">50dp</dimen>
 
-    <dimen name="dialog.textView_marginHorizontal">15dp</dimen>
-    <dimen name="dialog.textView_marginVertical">10dp</dimen>
-    <dimen name="dialog.layoutBottom_marginTop">20dp</dimen>
-    <dimen name="dialog.layoutBottom_marginBottom">10dp</dimen>
-    <dimen name="dialog.remove.text_size.medium">14sp</dimen>
-    <dimen name="dialog.remove.text_size.small">12sp</dimen>
+    <dimen name="textSize_small">10sp</dimen>
+    <dimen name="textSize_normal">14sp</dimen>
+    <dimen name="textSize_medium">16sp</dimen>
+    <dimen name="textSize_large">18sp</dimen>
 
-    <dimen name="fab_marginBottom">5dp</dimen>
-    <dimen name="ll_fab_margin">10dp</dimen>
+    <dimen name="indent_small">5dp</dimen>
+    <dimen name="indent_normal">10dp</dimen>
+    <dimen name="indent_medium">14dp</dimen>
+    <dimen name="indent_large">18dp</dimen>
+
 
 </resources>

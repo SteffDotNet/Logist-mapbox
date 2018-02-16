@@ -49,13 +49,18 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-
     //GSON
     compile 'com.google.code.gson:gson:2.6.2'
 
     //ButterKnife
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor "com.jakewharton:butterknife-compiler:8.4.0"
+
+    //Dagger2
+    compile 'com.google.dagger:dagger:2.10'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+    compile 'com.google.dagger:dagger-android-support:2.10'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

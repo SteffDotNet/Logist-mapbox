@@ -3,49 +3,54 @@ package logist.ed.by.mvp.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.mapbox.mapboxsdk.annotations.Marker;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import logist.ed.by.mvp.service.GeocodingService;
+import javax.inject.Inject;
+
+import logist.ed.by.LogistApp;
 import logist.ed.by.mvp.service.MarkerService;
 import logist.ed.by.mvp.service.RouteService;
+import logist.ed.by.mvp.service.TimerService;
 import logist.ed.by.mvp.view.MainIView;
-
-
-/**
- * Created by Egor on 03.02.2018.
- */
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainIView>{
 
-    public void createMarker(MapboxMap mapboxMap, LatLng position){
-        MarkerService.getInstance().createCurrentMarker(mapboxMap, position, this::hideMarkerMenu);
+    @Inject TimerService timerService;
+
+    @Inject MarkerService markerService;
+
+    public MainPresenter() {
+        LogistApp.getAppComponent().inject(this);
     }
 
-    public  void removeCurrentMarker(){
-        MarkerService.getInstance().removeCurrentMarker();
+    public void startTimer(){
+        timerService.start(this::finishTimer);
     }
 
-    public void removeMarker(Marker marker) {
-        MarkerService.getInstance().removeMarker(marker);
-        getViewState().updateRoute();
+    public void stopTimer(){
+        timerService.stop();
     }
 
-    public void hideMarkerMenu(){
+    public void finishTimer(){
+        getViewState().removeMarker();
+        setCurrentMarker(null);
         getViewState().hideMenu();
     }
 
-    public void stopMarkerTime(){
-        MarkerService.getInstance().stopTimer();
+    public void setCurrentMarker(Marker marker){
+        markerService.setCurrentMarker(marker);
+    }
+
+    public Marker getCurrentMarker(){
+        return markerService.getCurrentMarker();
     }
 
     public void updateMarkers(MapboxMap mapboxMap){
-        List<Marker> newMarkers = new ArrayList<>();
+        /*List<Marker> newMarkers = new ArrayList<>();
 
         for(Marker m : MarkerService.getInstance().getAllMarkers()){
             Marker newMarker = mapboxMap.addMarker(new MarkerOptions()
@@ -56,11 +61,7 @@ public class MainPresenter extends MvpPresenter<MainIView>{
             newMarkers.add(newMarker);
         }
 
-        MarkerService.getInstance().setMarkers(newMarkers);
-    }
-
-    public void setCurrentMarker(Marker currentMarker) {
-        MarkerService.getInstance().setCurrentMarker(currentMarker);
+        MarkerService.getInstance().setMarkers(newMarkers);*/
     }
 
     public void updateRoute(MapboxMap mapboxMap, List<LatLng> points){

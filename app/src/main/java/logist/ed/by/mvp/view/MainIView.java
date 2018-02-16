@@ -3,6 +3,7 @@ package logist.ed.by.mvp.view;
 import android.content.Context;
 
 import com.arellomobile.mvp.MvpView;
+import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 
 /**
@@ -16,4 +17,6 @@ public interface MainIView extends MvpView {
     void startMarkerActivity();
     void updateRoute();
 
+    void createNewMarker(LatLng latLng);
+    void removeMarker();
 }

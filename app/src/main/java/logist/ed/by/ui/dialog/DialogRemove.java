@@ -1,4 +1,4 @@
-package logist.ed.by.dialog;
+package logist.ed.by.ui.dialog;
 
 import android.app.AlertDialog;
 import android.content.Context;

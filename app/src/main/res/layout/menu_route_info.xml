@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/menu.route_info.height"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/routeBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_book"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/distanceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/indent_large"
+            android:layout_toLeftOf="@id/routeBook"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textSize_large"
+            android:textColor="@color/textColor.white"
+            android:text="3.2 км"/>
+
+        <TextView
+            android:id="@+id/durationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/indent_large"
+            android:layout_toRightOf="@id/routeBook"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/textSize_large"
+            android:textColor="@color/textColor.white"
+            android:text="10 мин"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

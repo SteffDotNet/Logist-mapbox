@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/activity.background">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/maToolBar"
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary">
@@ -14,92 +15,75 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/ma.text_size.large"
-            android:textStyle="bold"
-            android:textColor="@color/ma.toolbar.textView"
             android:layout_gravity="center"
-            android:text="@string/ma.route_point"/>
+            android:text="@string/ma.route_point"
+            android:textColor="@color/ma.toolbar.textView"
+            android:textSize="@dimen/textSize_large"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ma.textView"
-        android:textSize="@dimen/ma.text_size.small"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/ma.textView_marginTop"
-        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
-        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
-        android:text="@string/ma.latitude"/>
-
-    <EditText
-        android:id="@+id/latEditText"
+    <LinearLayout
+        style="@style/MarkerViewContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/ma.text_size.medium"
-        android:layout_marginRight="@dimen/ma.editText_margin"
-        android:layout_marginLeft="@dimen/ma.editText_margin"
-        android:theme="@style/EditText"/>
+        android:layout_below="@id/toolBar"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ma.textView"
-        android:textSize="@dimen/ma.text_size.small"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/ma.textView_marginTop"
-        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
-        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
-        android:text="@string/ma.longitude"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/indent_small"
+            android:text="@string/ma.title"
+            android:textColor="@color/ma.textView"
+            android:textSize="@dimen/textSize_normal"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/lngEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/ma.text_size.medium"
-        android:layout_marginRight="@dimen/ma.editText_margin"
-        android:layout_marginLeft="@dimen/ma.editText_margin"
-        android:theme="@style/EditText"/>
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditText" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ma.textView"
-        android:textSize="@dimen/ma.text_size.small"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/ma.textView_marginTop"
-        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
-        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
-        android:text="@string/ma.title"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/indent_small"
+            android:text="@string/ma.description"
+            android:textColor="@color/ma.textView"
+            android:textSize="@dimen/textSize_normal"
+            android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/titleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/ma.text_size.medium"
-        android:layout_marginRight="@dimen/ma.editText_margin"
-        android:layout_marginLeft="@dimen/ma.editText_margin"
-        android:theme="@style/EditText"/>
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/EditText" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/ma.textView"
-        android:textSize="@dimen/ma.text_size.small"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/ma.textView_marginTop"
-        android:layout_marginLeft="@dimen/ma.textView_marginLeft"
-        android:layout_marginBottom="@dimen/ma.textView_marginBottom"
-        android:text="@string/ma.description"/>
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:paddingTop="@dimen/indent_normal">
 
-    <EditText
-        android:id="@+id/descriptionEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/ma.text_size.medium"
-        android:layout_marginRight="@dimen/ma.editText_margin"
-        android:layout_marginLeft="@dimen/ma.editText_margin"
-        android:theme="@style/EditText"/>
+         <ImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/ic_location"/>
 
-</LinearLayout>
+         <TextView
+             android:id="@+id/positionTextView"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_vertical"
+             android:paddingLeft="@dimen/indent_small"
+             android:textColor="@color/marker.coordinates"
+             android:textSize="@dimen/textSize_small"
+             android:text="45.2326, 56.7854"/>
+
+     </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

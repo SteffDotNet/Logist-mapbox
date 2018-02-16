@@ -29,6 +29,8 @@ public class RouteService {
     private static RouteService instance;
     private final static String ACCESS_TOKEN = "pk.eyJ1IjoiZWdvcjk0IiwiYSI6ImNqZDc4cDFjcjE3b3AycXIybnRzMmx3NGoifQ.83ldmjO57BRCSKnnQx2qag";
     private Polyline polyline;
+    private double distance;
+    private double duration;
 
     public static RouteService getInstance(){
         if(instance == null){

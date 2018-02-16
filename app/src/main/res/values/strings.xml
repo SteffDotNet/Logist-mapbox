@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Logist</string>
-    <string name="map_key">pk.eyJ1IjoiZWdvcjk0IiwiYSI6ImNqZDc4cDFjcjE3b3AycXIybnRzMmx3NGoifQ.83ldmjO57BRCSKnnQx2qag</string>
 
     <!-- Menu items -->
     <string name="menu.marker_add">Добавить</string>
@@ -12,7 +11,6 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
-
     <string name="dialog.remove.title">Вы уверены?</string>
     <string name="dialog.remove.content">Данная точка будет удалена из вашего маршрута</string>
 
@@ -21,6 +19,8 @@
     <string name="ma.description">Описание</string>
     <string name="ma.longitude">Долгота</string>
     <string name="ma.latitude">Широта</string>
+
+    <string name="route_bookmark.title">Путевой лист</string>
 
 
 </resources>
